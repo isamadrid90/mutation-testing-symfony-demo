@@ -18,6 +18,7 @@
         "doctrine/doctrine-bundle": "^2.5",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.10",
+        "infection/infection": "^0.26.10",
         "league/commonmark": "^2.1",
         "sensio/framework-extra-bundle": "^6.2",
         "symfony/apache-pack": "^1.0",
@@ -49,6 +50,7 @@
         "dama/doctrine-test-bundle": "^7.0",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "phpstan/phpstan": "^1.2",
+        "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "^6.0",
         "symfony/css-selector": "^6.0",
         "symfony/debug-bundle": "^6.0",
@@ -68,8 +70,10 @@
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "symfony/flex": true,
-            "symfony/runtime": true
-        }
+            "symfony/runtime": true,
+            "infection/extension-installer": true
+        },
+        "process-timeout": 0
     },
     "autoload": {
         "psr-4": {
