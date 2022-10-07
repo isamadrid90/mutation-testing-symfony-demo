@@ -10,4 +10,6 @@ RUN pecl install xdebug \
 
 RUN apt-get update && \
     apt-get upgrade -y && \
+    apt-get install -y libzip-dev zip && \
+    docker-php-ext-install zip && \
     apt-get install -y git
