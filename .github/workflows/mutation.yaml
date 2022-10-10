@@ -16,18 +16,13 @@ env:
     # "Symfony\Bridge\Monolog\Handler\FingersCrossed\HttpCodeActivationStrategy"
     # is deprecated, "Monolog\Handler\FingersCrossed\ActivationStrategyInterface" expected.
     SYMFONY_DEPRECATIONS_HELPER: 40
-    PHP_INI_VALUES: memory_limit=-1, assert.exception=1, zend.assertions=1, error_reporting=-1, log_errors_max_len=0, display_errors=On
+    PHP_INI_VALUES: memory_limit=-1,
 
 jobs:
     test:
         name: "${{ matrix.operating-system }} / PHP ${{ matrix.php-version }}"
         runs-on: ${{ matrix.operating-system }}
         continue-on-error: false
-
-        strategy:
-            matrix:
-                operating-system: ['ubuntu-latest']
-                php-version: ['8.1']
 
         steps:
             - name: "Checkout code"
@@ -38,8 +33,8 @@ jobs:
               with:
                   coverage: "none"
                   extensions: "intl, mbstring, pdo_sqlite"
-                  php-version: ${{ matrix.php-version }}
-                  ini-values: ${{ env.PHP_INI_VALUES }}
+                  php-version: '8.1'
+                  ini-values: memory_limit=-1, max_execution_time=0
                   tools: composer:v2
 
             - name: "Install dependencies"
@@ -47,5 +42,4 @@ jobs:
 
             - name: Run Infection for added (A) and modified (M) files
               run: |
-                git fetch --depth=1 origin $GITHUB_BASE_REF
-                phpdbg -qrr vendor/bin/infection --git-diff-base=origin/$GITHUB_BASE_REF --git-diff-filter=AM --logger-github
+                phpdbg -qrr vendor/bin/infection
