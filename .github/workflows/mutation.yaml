@@ -47,4 +47,4 @@ jobs:
             - name: Run Infection for added (A) and modified (M) files
               run: |
                 vendor/bin/phpunit --coverage-xml=/tmp/build/coverage-xml --log-junit=/tmp/build/phpunit.junit.xml                
-                php -d max_execution_time=0 -d memory_limit=-1 vendor/bin/infection --verbose --coverage=/tmp/build --threads=4 --git-diff-base=$GITHUB_BASE_REF --git-diff-filter=AM --logger-github
+                php -d max_execution_time=0 -d memory_limit=-1 vendor/bin/infection --verbose --coverage=/tmp/build --threads=4 --git-diff-filter=AM --logger-github
