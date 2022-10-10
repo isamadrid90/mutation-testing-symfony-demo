@@ -46,4 +46,4 @@ jobs:
             - name: Run Infection for added (A) and modified (M) files
               run: |
                 git fetch --depth=1 origin $GITHUB_BASE_REF
-                phpdbg -qrr -d memory_limit=-1 vendor/bin/infection --threads=2 --git-diff-base=origin/$GITHUB_BASE_REF --git-diff-filter=AM --logger-github
+                php -d memory_limit=-1 vendor/bin/infection --threads=2 --git-diff-base=origin/$GITHUB_BASE_REF --git-diff-filter=AM --logger-github
