@@ -19,10 +19,14 @@ env:
     PHP_INI_VALUES: memory_limit=-1,
 
 jobs:
-    test:
+    mutation_test:
         name: "${{ matrix.operating-system }} / PHP ${{ matrix.php-version }}"
         runs-on: ${{ matrix.operating-system }}
         continue-on-error: false
+
+        strategy:
+          matrix:
+            operating-system: [ 'ubuntu-latest' ]
 
         steps:
             - name: "Checkout code"
