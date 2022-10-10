@@ -16,6 +16,7 @@ env:
     # "Symfony\Bridge\Monolog\Handler\FingersCrossed\HttpCodeActivationStrategy"
     # is deprecated, "Monolog\Handler\FingersCrossed\ActivationStrategyInterface" expected.
     SYMFONY_DEPRECATIONS_HELPER: 40
+    PHP_INI_VALUES: memory_limit=-1, assert.exception=1, zend.assertions=1, error_reporting=-1, log_errors_max_len=0, display_errors=On
 
 jobs:
     test:
@@ -38,6 +39,7 @@ jobs:
                   coverage: "none"
                   extensions: "intl, mbstring, pdo_sqlite"
                   php-version: ${{ matrix.php-version }}
+                  ini-values: ${{ env.PHP_INI_VALUES }}
                   tools: composer:v2
 
             - name: "Install dependencies"
