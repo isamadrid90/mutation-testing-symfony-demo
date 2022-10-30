@@ -47,4 +47,11 @@ jobs:
             - name: Run Infection for added (A) and modified (M) files
               run: |
                 vendor/bin/phpunit --coverage-xml=/tmp/build/coverage-xml --log-junit=/tmp/build/phpunit.junit.xml                
-                php -d max_execution_time=0 -d memory_limit=-1 vendor/bin/infection --verbose --coverage=/tmp/build --threads=4 --logger-github
+                php -d max_execution_time=0 -d memory_limit=-1 vendor/bin/infection --verbose --coverage=/tmp/build --threads=4
+
+            - name: Upload report
+              uses: actions/upload-artifact@v2
+              with:
+                name: reports-artifact
+                path: infection
+                retention-days: 3
