@@ -20,7 +20,7 @@ env:
 
 jobs:
     mutation_test:
-        name: "${{ matrix.operating-system }} / PHP ${{ matrix.php-version }}"
+        name: "Mutation testing with Infection"
         runs-on: ${{ matrix.operating-system }}
         continue-on-error: false
 
